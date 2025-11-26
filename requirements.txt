@@ -1,0 +1,11 @@
+numpy
+matplotlib
+librosa
+scikit-learn
+scipy
+h5py
+pyyaml
+tqdm
+soundfile
+ipython
+joblib

@@ -213,6 +213,12 @@ def main(argv):
     device = torch.device("cuda" if use_cuda else "cpu")
     torch.autograd.set_detect_anomaly(True)
 
+    print(">>> PyTorch device:", device)
+    if use_cuda:
+        print(">>> GPU name:", torch.cuda.get_device_name(0))
+    else:
+        print(">>> CUDA not available, running on CPU")
+
     # use parameter set defined by user
     task_id = '1' if len(argv) < 2 else argv[1]
     params = parameters.get_params(task_id)
@@ -238,8 +244,10 @@ def main(argv):
             train_splits = [[1, 2, 3]] 
 
         else:
-            print('ERROR: Unknown dataset splits')
-            exit()
+            test_splits = [[4]]
+            val_splits = [[4]]
+            train_splits = [[1, 2, 3]] 
+
     for split_cnt, split in enumerate(test_splits):
         print('\n\n---------------------------------------------------------------------------------------------------')
         print('------------------------------------      SPLIT {}   -----------------------------------------------'.format(split))

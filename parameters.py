@@ -8,25 +8,25 @@ def get_params(argv='1'):
     print("SET: {}".format(argv))
     # ########### default parameters ##############
     params = dict(
-        quick_test=True,     # To do quick test. Trains/test on small subset of dataset, and # of epochs
+        quick_test=False,     # To do quick test. Trains/test on small subset of dataset, and # of epochs
     
         finetune_mode = False,  # Finetune on existing model, requires the pretrained model path set - pretrained_model_weights
         pretrained_model_weights = 'models/1_1_foa_dev_split6_model.h5', 
 
         # INPUT PATH
         # dataset_dir='DCASE2020_SELD_dataset/',  # Base folder containing the foa/mic and metadata folders
-        dataset_dir = '/scratch/asignal/partha/DCASE2022_SELD_dataset',
+        dataset_dir = r'D:\邵鹏远\UCL\博1\code\SELDnet_DCASE_2022\data',
 
         # OUTPUT PATHS
         # feat_label_dir='DCASE2020_SELD_dataset/feat_label_hnet/',  # Directory to dump extracted features and labels
-        feat_label_dir='/scratch/asignal/partha/DCASE2022_SELD_dataset/seld_feat_label',
+        feat_label_dir=r'D:\邵鹏远\UCL\博1\code\SELDnet_DCASE_2022\data\processed_features',
  
         model_dir='models/',            # Dumps the trained models and training curves in this folder
         dcase_output_dir='results/',    # recording-wise results are dumped in this path.
 
         # DATASET LOADING PARAMETERS
         mode='dev',         # 'dev' - development or 'eval' - evaluation dataset
-        dataset='foa',       # 'foa' - ambisonic or 'mic' - microphone signals
+        dataset='mic',       # 'foa' - ambisonic or 'mic' - microphone signals
 
         #FEATURE PARAMS
         fs=24000,
@@ -131,6 +131,8 @@ def get_params(argv='1'):
         params['unique_classes'] = 12
     elif '2022' in params['dataset_dir']:
         params['unique_classes'] = 13
+    else:
+        params['unique_classes'] = 13  # Default to 2022 dataset
 
     for key, value in params.items():
         print("\t{}: {}".format(key, value))
